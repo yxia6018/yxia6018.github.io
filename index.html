@@ -1,60 +1,32 @@
 <!DOCTYPE html>
-<html>
- <head>
-   <title>INST 377 assignment 1</title>
-   <link rel="stylesheet" type="text/css" href="style.css" />
+<html lang="en">
+
+<head>
+  <title>Test AJAX page</title>
+  <link rel="stylesheet" type="text/css" href="./lab_styles.css">
 </head>
- <body>
-    <div id="header">     
-        <h1>Yineng Xia</h1>
-        <p>Cell phone: 2027337468 
-           <address>5349 S center drive, Greenbelt, MD</address>
-                Email: <yxia6018@gmail class="com">
-                  yxia6018@gmail.com 
-                  </yxia6018@gmail> 
-        </p>
+
+<body>
+  <div class="container">
+    <div class="wrapper">
+      <div class="header">Test AJAX page</div>
+      <button class="button" onclick="loadData()">Load Some JSON</button>
+      <div class="content"></div>
+      <div class="footer"></div>
     </div>
-    <div id="mainly">
-        <div class="photo">
-            
-                 <a><img src="0927.JPG" alt="daily life" style="widows: 200px;;height:300px;border:0">
-                 </a>
-                 <p>That image can display my daily life</p>
-                </div>
-        <div class="work history">
-            <h2>Work history</h2>
-            <div class="work1">
-            <h3>CSSA UMD Staff</h3>
-            <p>Description of the job: This job was responsible for 
-                promoting the event news 
-                and publishing the latest social media.</p>
-            <p>
-                My co-workers and I were responsible for releasing 
-                the latest social media to Chinese students.
-            </p>          
-           </div>
-           <div class="work2">
-               <h3>Database Administration intern </h3>
-               <p>Description of the job: the company's job requirements 
-                   were responsible for the day-to-day maintenance of the 
-                   company's related databases, the data analysis work and 
-                   the database structure of the participating projects.
-                </p>
-                <p>I was mainly responsible for data analysis and specialized 
-                    data processing.
-                </p>
-            </div>
-            <div class="work3">
-                <h3>Web design/production intern</h3>
-                <p>Description of the job: was responsible for website advertising 
-                    design, update and website design update or modification. 
-                </p>
-                <p>The update and modification of the website mainly includes the 
-                    daily news update and 
-                    the repair of the website programming errors. 
-                </p>
-            </div>    
-        </div>
-    </div>
+  </div>
+  <script>
+    function loadData() {
+      fetch('ajax_sample.json')
+        /*.then(res => res.json())*/
+        .then(arbitrary_variable_name =>{return arbitrary_variable_name})
+        .then(res => res.map(c => c.code))
+        .then(codes => {
+        document.querySelector(".content").innerText = codes
+        return ;
+      })
+      .then(function(arg){});
+    }
+  </script>
 </body>
 </html>
