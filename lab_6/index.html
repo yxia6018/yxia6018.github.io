@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test AJAX page</title>
+    <link rel="stylesheet" type="text/css" href="lab_styles.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div class="header">Test AJAX page</div>
+        <button class="button" onclick="window.location.reload();">Load Some JSON</button>
+        <div class="content"></div>
+
+        <div class="footer"></div>
+      </div>
+    </div>
+    <script>
+      function loadData() {
+        fetch('ajax_sample.json')
+          .then(res => res.json())
+          .then(data => data.map(c => c.name + " (" + c.code + ")"))
+          .then(data => displayData(data));
+      }
+      function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+      /*function clickme() {
+              const json = sessionStorage.getItem("ajax_sample.json");
+              const list = JSON.parse(json);
+              const element = document.querySelector(".content");
+
+              const nameArray = list.map(i => i.name);
+      }*/
+      function displayData(array) {
+        const element = document.querySelector(".content");
+        element.innerHTML = "";
+        let p = [];
+        for (let i = 1; i <= 16; i++) {
+          let random = getRandom(0, 242);
+          while (p.includes(random)) {
+            continue;
+          }
+          p.push(random);
+          let el = document.createElement("p");
+          el.innerText = i.toString() + ". " + array[random];
+          element.appendChild(el);
+        }
+      }
+    </script>
+  </body>
+</html>
